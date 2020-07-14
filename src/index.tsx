@@ -1,3 +1,4 @@
+import "whatwg-fetch"; // polyfill library that will make sure that fetch works on Internet Explorer
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
