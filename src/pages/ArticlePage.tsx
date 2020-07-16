@@ -5,6 +5,8 @@ import ArticleList from "../components/ArticleList";
 import NotFoundPage from "./NotFoundPage";
 import Article from "../models/Article";
 import CommentList from "../components/CommentsList";
+import UpvotesSection from "../components/UpvotesSection";
+import AddCommentForm from "../components/AddCommentForm";
 
 interface Params {
   name: string;
@@ -39,7 +41,10 @@ const ArticlePage = (props: Props) => {
     <>
       <div>
         <h1>{article.title}</h1>
-        <p>This post has been upvoted {articleInfo.upvotes} times</p>
+        <UpvotesSection
+          articleInfo={articleInfo}
+          setArticleInfo={setArticleInfo}
+        />
         {article.content.map((con: string, index: number) => (
           <p key={index}>{con}</p>
         ))}
@@ -47,6 +52,11 @@ const ArticlePage = (props: Props) => {
       {articleInfo.comments && articleInfo.comments.length > 0 ? (
         <CommentList comments={articleInfo.comments} />
       ) : null}
+
+      <AddCommentForm
+        articleName={articleInfo.name}
+        setArticleInfo={setArticleInfo}
+      />
       <h3>Other Articles:</h3>
       <ArticleList articles={otherArticles} />
     </>
